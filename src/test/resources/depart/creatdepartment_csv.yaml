@@ -1,0 +1,14 @@
+#ApiTestCaseModel
+name: creatdepartment
+description: 初步测试创建部门用例
+csvParameter: src/test/resources/data/createDepartment.csv
+steps:
+  - api: department
+    action: createDepartment
+    actualParameter: ["${csv0}","${csv1}"]
+    asserts:
+      - actual: errcode
+        matcher: equalTo
+        expect: "${csv2}"
+        reason: '创建部门校验错误码！'
+

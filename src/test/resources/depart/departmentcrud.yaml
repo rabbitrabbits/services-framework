@@ -1,0 +1,30 @@
+#ApiTestCaseModel
+name: creatdepartment
+description: 初步测试创建部门用例
+steps:
+  - api: department
+    action: createDepartment
+    actualParameter: [ "部门${getTimeStamp}","Department${getTimeStamp}" ]
+    save:
+      departmentId: id
+    asserts:
+      - actual: errcode
+        matcher: equalTo
+        expect: 0
+        reason: '创建部门校验错误码！'
+  - api: department
+    action: updateDepartment
+    actualParameter: [ "${departmentId}","部门${getTimeStamp}","Department${getTimeStamp}" ]
+    asserts:
+      - actual: errcode
+        matcher: equalTo
+        expect: 0
+        reason: '修改部门校验错误码！'
+  - api: department
+    action: deletDepartment
+    actualParameter: [ "${departmentId}" ]
+    asserts:
+      - actual: errcode
+        matcher: equalTo
+        expect: 0
+        reason: '删除部门校验错误码！'
